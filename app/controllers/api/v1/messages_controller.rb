@@ -26,7 +26,7 @@ class Api::V1::MessagesController < ApplicationController
       puts "Subject: #{request_body['Subject']}. Message: #{request_body['Message']}"
     end
 
-    render nothing: true
+    head :ok
   end
 
   private
