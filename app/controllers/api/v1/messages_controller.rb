@@ -5,13 +5,16 @@ class Api::V1::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
+    basecampbot_url = Rails.configuration.service['basecampbot_url']
+    snstopic_arn = Rails.configuration.service['snstopic_arn']
+
     # get amazon message type and topic
     amz_message_type = request.headers['x-amz-sns-message-type']
     amz_sns_topic = request.headers['x-amz-sns-topic-arn']
 
-    #sure you recieve messages from a right topic
+    # sure you recieve messages from a right topic
     return unless !amz_sns_topic.nil? &&
-        amz_sns_topic.to_s.downcase == 'arn:aws:sns:eu-central-1:798348585423:basecamp-bot'
+        amz_sns_topic.to_s.downcase == snstopic_arn
 
     request_body = JSON.parse request.body.read
 
@@ -22,8 +25,10 @@ class Api::V1::MessagesController < ApplicationController
     end
 
     if amz_message_type.to_s.downcase == 'notification'
-      #DO WORK HERE
-      puts "Subject: #{request_body['Subject']}. Message: #{request_body['Message']}"
+      # DO WORK HERE
+      message = "Subject: #{request_body['Subject']}<br/> #{request_body['Message']}"
+      # send message to basecamp
+      HTTParty.post basecampbot_url, query: { content: message }
     end
 
     head :ok
