@@ -1,8 +1,9 @@
-# basecampSNS-rails
+# basecamp3-rails-chatbot
 
-You have a basecamp bot, you have an AWS SNS ... mmm ... BasecampSNS
-
-Simple rails application to transfer messages from AWS SNS to your basecamp HQ. 
+Rails application to transfer messages to your basecamp3 HQ.
+ 
+## Supported services
+1. [AWS SNS](https://aws.amazon.com/sns/)
 
 ## Usage
 
