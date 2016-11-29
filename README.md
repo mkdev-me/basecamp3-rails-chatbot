@@ -4,8 +4,11 @@ Rails application to transfer messages to your basecamp3 HQ.
  
 ## Supported services
 1. [AWS SNS](https://aws.amazon.com/sns/)
+2. [Rollbar](https://rollbar.com/)
 
 ## Usage
+
+### AWS SNS
 
 1. Register AWS and [create SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html). Remember Topic ARN!
 2. Register Basecamp and [create bot](https://m.signalvnoise.com/new-in-basecamp-3-chatbots-8526618c0c7d#.kabo3hgs1). There
@@ -18,6 +21,11 @@ you need a bot long link. Like this: `https://3.basecamp.com/195539477/integrati
 7. At first time SNS send confirmation request. After subscription you can 
 [publish messages to a topic](http://docs.aws.amazon.com/sns/latest/dg/PublishTopic.html)
 
+### Rollbar
+1. Register rollbar and add it to your project
+2. Configure [webhooks](https://rollbar.com/docs/webhooks/) and use `http://your-external-host/integrations/rollbar` as endpoint
+
 ## References
 
 * Most controller logic based on [Creating SNS subscription endpoints with Ruby on Rails](http://blog.eng.xogrp.com/post/79166302844/creating-sns-subscription-endpoints-with-ruby-on#disqus_thread)
+* [How to receive webhooks in your Ruby on Rails application - Part 1](https://cookieshq.co.uk/posts/how-to-receive-webhooks-in-your-ruby-on-rails-application/)
