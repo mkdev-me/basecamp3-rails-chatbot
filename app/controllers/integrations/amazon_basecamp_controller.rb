@@ -1,4 +1,4 @@
-class Api::V1::MessagesController < ApplicationController
+class Integrations::AmazonBasecampController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create

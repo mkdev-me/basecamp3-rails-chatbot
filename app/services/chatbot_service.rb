@@ -16,6 +16,7 @@ class ChatbotService
 
   def confirm_subscribe!
     return nil unless url.present?
-    HTTParty.get(subscribe_url)
+    puts url
+    HTTParty.get(url)
   end
 end
