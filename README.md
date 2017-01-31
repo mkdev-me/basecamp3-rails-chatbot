@@ -14,7 +14,7 @@ you need a bot long link. Like this: `https://3.basecamp.com/195539477/integrati
 4. Write your SNS **Topic ARN** and Basecamp **bot url** to /config/service.yml
 5. rails s
 6. [Create subscription](http://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html). Use HTTP **Protocol** and 
-`http://your-external-host/api/v1/messages` as **Endpoint**
+`http://your-external-host/integrations/aws_sns` as **Endpoint**
 7. At first time SNS send confirmation request. After subscription you can 
 [publish messages to a topic](http://docs.aws.amazon.com/sns/latest/dg/PublishTopic.html)
 

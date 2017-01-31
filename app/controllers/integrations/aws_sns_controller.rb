@@ -1,4 +1,6 @@
-class Integrations::AmazonBasecampController < ApplicationController
+require 'httparty'
+
+class Integrations::AwsSnsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
@@ -21,9 +23,12 @@ class Integrations::AmazonBasecampController < ApplicationController
     end
 
     if amz_message_type.to_s.downcase == 'notification'
-      ChatbotService.new(Rails.configuration.service['basecampbot_url']).post_message(
-        subject: request_body['Subject'],
-        message: request_body['Message']
+      Chatbot.post_message(
+        Rails.configuration.service['basecampbot_url'],
+        {
+          subject: request_body['Subject'],
+          message: request_body['Message']
+        }
       )
     end
 
@@ -33,6 +38,8 @@ class Integrations::AmazonBasecampController < ApplicationController
   private
 
   def send_subscription_confirmation(request_body)
-    ChatbotService.new(request_body['SubscribeURL']).confirm_subscribe!
+    url = request_body['SubscribeURL']
+    return nil unless url.present?
+    HTTParty.get(url)
   end
 end
