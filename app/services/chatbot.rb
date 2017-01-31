@@ -1,6 +1,6 @@
 module Chatbot
   def self.post_message(url, options)
-    message = Chatbot::MessageTempate.show([
+    message = MessageTempate.show([
       options[:message], { subject: options[:subject] }
     ])
 
