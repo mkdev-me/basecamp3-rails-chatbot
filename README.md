@@ -17,6 +17,7 @@ you need a bot long link. Like this: `https://3.basecamp.com/195539477/integrati
 `http://your-external-host/api/v1/messages` as **Endpoint**
 7. At first time SNS send confirmation request. After subscription you can 
 [publish messages to a topic](http://docs.aws.amazon.com/sns/latest/dg/PublishTopic.html)
+8. If you'll send some POST request to `http://your-external-host/api/v1/images` it will post to your Basecamp chat (Campfire) a random funny gif from [Giphy](http://giphy.com/).
 
 ## References
 
