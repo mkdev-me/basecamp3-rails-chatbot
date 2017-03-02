@@ -1,8 +1,6 @@
-
 class Api::V1::ImagesController < ApplicationController
   skip_before_action :verify_authenticity_token
-
-  # post random giphy's image to Basecamp
+ 
   def create
 
   	basecampbot_url = Rails.configuration.service['basecampbot_url']
