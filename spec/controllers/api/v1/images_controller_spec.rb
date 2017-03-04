@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Api::V1::ImagesController, type: :controller do
+
   describe 'POST #create' do
     context 'when anybody send request with tag' do
       it 'posts tagged image to Basecamp' do
