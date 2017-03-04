@@ -1,11 +1,9 @@
-require 'json'
 require 'httparty'
 
-class Api::V1::MessagesController < ApplicationController
+class Integrations::AwsSnsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    basecampbot_url = Rails.configuration.service['basecampbot_url']
     snstopic_arn = Rails.configuration.service['snstopic_arn']
 
     # get amazon message type and topic
@@ -25,10 +23,13 @@ class Api::V1::MessagesController < ApplicationController
     end
 
     if amz_message_type.to_s.downcase == 'notification'
-      # DO WORK HERE
-      message = "Subject: #{request_body['Subject']}<br/> #{request_body['Message']}"
-      # send message to basecamp
-      HTTParty.post basecampbot_url, query: { content: message }
+      Chatbot.post_message(
+        Rails.configuration.service['basecampbot_url'],
+        {
+          subject: request_body['Subject'],
+          message: request_body['Message']
+        }
+      )
     end
 
     head :ok
@@ -37,10 +38,8 @@ class Api::V1::MessagesController < ApplicationController
   private
 
   def send_subscription_confirmation(request_body)
-    subscribe_url = request_body['SubscribeURL']
-    return nil unless !subscribe_url.to_s.empty? && !subscribe_url.nil?
-    subscribe_confirm = HTTParty.get subscribe_url
+    url = request_body['SubscribeURL']
+    return nil unless url.present?
+    HTTParty.get(url)
   end
-
-
 end
