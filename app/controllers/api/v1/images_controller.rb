@@ -19,6 +19,7 @@ class Api::V1::ImagesController < ApplicationController
   private
 
   def random_image_url(tag = '')
-    Giphy.random(tag).instance_variable_get('@hash').fetch('fixed_width_downsampled_url')
+    Giphy.random(tag).instance_variable_get('@hash')
+         .fetch('fixed_width_downsampled_url')
   end
 end
