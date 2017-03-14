@@ -8,9 +8,7 @@ class Api::V1::ImagesController < ApplicationController
       request_body = JSON.parse request.body.read
       tag = request_body['tag']
     end
-
-    tag ||= nil
-
+    
     HTTParty.post(basecampbot_url, query: { content: random_image_url(tag) })
 
     head :no_content
