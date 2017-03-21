@@ -13,13 +13,13 @@ Rails application to transfer messages to your basecamp3 HQ.
 you need a bot long link. Like this: 
 `https://3.basecamp.com/195539477/integrations/2uH9aHLEVhhaXKPaqrj8yw8P/buckets/2085958501/chats/9007199254741775/lines`
 3. Clone this repo from GitHub.
-    3.1. Run __`bundle install`__ in your project directory.
-    3.2. Create a ```secrets.yml``` file in your config folder as described [here](http://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml).
+    1. Run __`bundle install`__ in your project directory.
+    2. Create a ```secrets.yml``` file in your config folder as described [here](http://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml).
 4. Write your SNS **Topic ARN** and Basecamp **bot url** to /config/service.yml
 5. Start  rails server by typing `rails s` command.
 6. [Create subscription](http://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html). Use HTTP **Protocol** and  `http://your-external-host/api/v1/messages` as **Endpoint**
 7. You will probably want to try running your app locally to test it and make sure it’s working as expected. To do that you will need a service that allows you to expose a web server running on your local machine to the Internet. We recommend to try [Ngrok](http://ngrok.com).
-    7.1. If you see this message on rails console:
+    1. If you see this message on rails console:
     ``Cannot render console from XXX.XXX.XXX.XXX! Allowed networks: 127.0.0.1,...``
     You need to whitelist the XXX.XXX.XXX.XXX network space in the Web console config.
     Open ``config/environments/development.rb`` and type your local IP address from the Internet Service Provider:
