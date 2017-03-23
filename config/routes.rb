@@ -5,5 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :messages, only: :create
     end
+
+    namespace :rollbar do
+      resources :messages, only: :create
+    end
   end
 end
