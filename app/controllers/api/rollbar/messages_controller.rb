@@ -1,6 +1,6 @@
 class Api::Rollbar::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :check_format, only: [:create]
+  before_action :check_request_format, only: [:create]
 
   def create
    # Get the parsed JSON string
@@ -15,15 +15,12 @@ class Api::Rollbar::MessagesController < ApplicationController
     # send message to basecamp
     helpers.send_message(message)
 
-        
-    # Prepare message for the campfire
-    # message = "Subject: #{request_body['Subject']}<br/> #{request_body['Message']}"
-    # send message to basecamp
+    
   end
 
   private
 
-  def check_format
+  def check_request_format
     return head :bad_request unless request.format.json?
   end
 
