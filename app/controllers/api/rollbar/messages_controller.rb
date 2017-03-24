@@ -5,6 +5,7 @@ class Api::Rollbar::MessagesController < ApplicationController
     # Get the parsed JSON string
     payload = helpers.parse_webhook
 
+    # error: JSON:ParserError
     # Get the failed JSON request message
     request_error =  payload[ :error ]
 
