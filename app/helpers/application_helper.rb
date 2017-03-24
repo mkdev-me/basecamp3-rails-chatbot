@@ -4,7 +4,7 @@ module ApplicationHelper
 
   # Parse JSON request from remote calback server
   def parse_webhook
-    # Handle exceptions in case of failed request  
+    # Handle exceptions in case of failed request
     JSON.parse request.body.read
    rescue JSON::ParserError => error
      return { error: error.to_s }
