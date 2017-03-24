@@ -14,10 +14,14 @@ class Api::Rollbar::MessagesController < ApplicationController
     data = payload['data']
 
     # Prepare message for the campfire
-    message = if request_error
-      "Failed request: #{request_error}"
-    else
-      "Subject: #{event}<br/>  Body: #{data}"
+    message = get_message
+    
+    def get_message
+      if request_error
+        "Failed request: #{request_error}"
+      else
+        "Subject: #{event}<br/>  Body: #{data}"
+      end
     end
 
     # send message to basecamp
