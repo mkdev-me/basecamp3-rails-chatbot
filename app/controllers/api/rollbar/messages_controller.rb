@@ -23,5 +23,4 @@ class Api::Rollbar::MessagesController < ApplicationController
     # send message to basecamp
     helpers.send_message(message)
   end
-  
 end
