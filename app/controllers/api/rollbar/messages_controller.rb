@@ -3,7 +3,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
   def create
     # Get the parsed JSON string
-    payload = helpers.parse_webhook
+    payload = helpers.parse_webhoook
 
     # Get the failed JSON request message
     request_error =  payload[ :error ]
