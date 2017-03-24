@@ -24,3 +24,4 @@ class Api::Rollbar::MessagesController < ApplicationController
     helpers.send_message(message)
   end
 end
+
