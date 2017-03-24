@@ -7,7 +7,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
     # error: JSON:ParserError
     # Get the failed JSON request message
-    request_error =  payload[ :error ]
+    request_error = payload[:error]
 
     # Store parsed dada from Rollerbar
     event = payload['event_name']
@@ -23,4 +23,5 @@ class Api::Rollbar::MessagesController < ApplicationController
     # send message to basecamp
     helpers.send_message(message)
   end
+  
 end
