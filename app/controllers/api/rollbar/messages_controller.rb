@@ -19,7 +19,7 @@ class Api::Rollbar::MessagesController < ApplicationController
     else
       message = "Subject: #{event}<br/>  Body: #{data}"
     end
-    
+
     # send message to basecamp
     helpers.send_message(message)
   end
