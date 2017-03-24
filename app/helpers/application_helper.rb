@@ -4,13 +4,10 @@ module ApplicationHelper
 
   # Parse JSON request from remote calback server
   def parse_webhook
-
     # Handle exceptions in case of failed request  
-    begin
-      JSON.parse request.body.read
-    rescue JSON::ParserError => error
-      return { error: error.to_s }
-    end
+    JSON.parse request.body.read
+   rescue JSON::ParserError => error
+     return { error: error.to_s }
   end
 
   # Send message to Basecamp Campfire via ChatBot
