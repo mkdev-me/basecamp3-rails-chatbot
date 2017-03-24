@@ -2,12 +2,11 @@ class Api::Rollbar::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-
     # Get the parsed JSON string
     payload = helpers.parse_webhook
 
     # Get the failed JSON request message
-    request_error =  payload[:error]
+    request_error =  payload[ :error ]
 
     # Store parsed dada from Rollerbar
     event = payload['event_name']
