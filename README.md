@@ -22,7 +22,7 @@ you need a bot long link. Like this:
     1. If you see this message on rails console:
         ``Cannot render console from XXX.XXX.XXX.XXX! Allowed networks: 127.0.0.1,...``
         You need to whitelist the XXX.XXX.XXX.XXX network space in the Web console config.
-        Open ``config/environments/development.rb`` and type IP address of the remote server:
+        Open ``config/environments/development.rb`` and type IP address of remote server:
 
         ``` config.web_console.whitelisted_ips = 'XXX.XXX.XXX.XXX' ```
 
