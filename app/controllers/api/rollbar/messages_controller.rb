@@ -14,7 +14,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     if request_error
-      message = "Failed request: #{request_error}"  
+      message = "Failed request: #{request_error}"
     else
       message = "Subject: #{event}<br/>  Body: #{data}"
     end
