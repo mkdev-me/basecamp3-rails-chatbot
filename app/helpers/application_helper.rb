@@ -7,7 +7,7 @@ module ApplicationHelper
     # Handle exceptions in case of failed request
     JSON.parse request.body.read
   rescue JSON::ParserError => error
-     return { error: error.to_s }
+    return { error: error.to_s }
   end
 
   # Send message to Basecamp Campfire via ChatBot
