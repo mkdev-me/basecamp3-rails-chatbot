@@ -10,11 +10,11 @@ class Api::Rollbar::MessagesController < ApplicationController
     request_error = @payload[:error]
 
     # Prepare message for the campfire
-    if request_error
-      message = "Failed request: #{request_error}"
-    else
-      message = build_message
-    end
+   message = if request_error
+               "Failed request: #{request_error}"
+             else
+                build_message
+             end
 
     # send message to basecamp
     helpers.send_message(message)
