@@ -13,7 +13,7 @@ class Api::Rollbar::MessagesController < ApplicationController
    message = if request_error
                "Failed request: #{request_error}"
              else
-                build_message
+               build_message
              end
 
     # send message to basecamp
