@@ -10,7 +10,7 @@ class Api::Rollbar::MessagesController < ApplicationController
     request_error = @payload[:error]
 
     # Prepare message for the campfire
-   message = if request_error
+    message = if request_error
                "Failed request: #{request_error}"
              else
                build_message
