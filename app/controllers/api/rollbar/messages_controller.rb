@@ -9,7 +9,7 @@ class Api::Rollbar::MessagesController < ApplicationController
     # Get the failed JSON request message
     request_error = @payload[:error]
 
-    # Prepare message for the campfire
+   # Prepare message for the campfire
     message = if request_error
                 "Failed request: #{request_error}"
               else
