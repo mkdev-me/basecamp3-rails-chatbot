@@ -6,7 +6,7 @@ module ApplicationHelper
   def parse_webhook
     # Handle exceptions in case of failed request
     JSON.parse request.body.read
-   rescue JSON::ParserError => error
+  rescue JSON::ParserError => error
      return { error: error.to_s }
   end
 
