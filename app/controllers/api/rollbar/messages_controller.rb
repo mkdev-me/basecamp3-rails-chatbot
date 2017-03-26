@@ -11,7 +11,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "Failed request: #{request_error}"
+                "<strong>Failed</strong> request: #{request_error}"
               else
                 build_message
               end
@@ -28,7 +28,8 @@ class Api::Rollbar::MessagesController < ApplicationController
     data = @payload['data']['item']['title']
     uuid = @payload['data']['occurrence']['uuid']
     event_url = "https://rollbar.com/instance/uuid?uuid=#{uuid}"
-    message = "<strong>Event:</strong>  #{event}<br/> <strong>Body:</strong>  #{data}<br/>
+    message = "<strong>Event:</strong>  #{event}<br/> 
+               <strong>Body:</strong>  #{data}<br/>
                <strong>Rollbar report:</strong>  #{event_url}"
   end
 end
