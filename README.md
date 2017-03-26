@@ -41,7 +41,8 @@ you need a bot long link. Like this:
 
 1. Create [Rollbar account](https://rollbar.com) and start the New project.
 2. Navigate to the project, click 'Settings', then click 'Notifications' in the left menu.
-3. Select the 'Webhook', enter the full URL where webhooks should be posted and enable the integration. Once set up, you can add, edit, or remove rules. For more instruction, please visit [Rollbar docs](https://rollbar.com/docs/webhooks) and [Ruby Integration](https://rollbar.com/docs/notifier/rollbar-gem)
+3. Select the 'Webhook', enter the full URL where webhooks should be posted (this App server IP) and enable the integration. 
+4. Once set up, you can add, edit, or remove rules. For more instruction, please visit [Rollbar docs](https://rollbar.com/docs/webhooks) and [Ruby Integration](https://rollbar.com/docs/notifier/rollbar-gem)
 
 #### References
 
