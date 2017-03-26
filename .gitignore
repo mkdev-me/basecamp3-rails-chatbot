@@ -20,6 +20,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/README.html
 
 # Ignore Byebug command history file.
 .byebug_history
