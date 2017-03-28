@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     namespace :rollbar do
       resources :messages, only: :create
     end
+
+    namespace :bugsnag do
+      resources :messages, only: :create
+    end
   end
 end
