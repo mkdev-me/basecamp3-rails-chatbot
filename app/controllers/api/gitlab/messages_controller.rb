@@ -11,7 +11,7 @@ class Api::Gitlab::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed</strong> request: #{request_error}"
+                "<strong>Failed request:</strong> #{request_error}"
               else
                 build_message
               end
@@ -24,11 +24,13 @@ class Api::Gitlab::MessagesController < ApplicationController
 
   def build_message
     # Store parsed dada from Rollbar
-    progect_name = @payload['project']['name']
+    project_name = @payload['project']['name']
     event = @payload['object_kind']
     project_url = @payload['project']['web_url']
-    message = "<strong>Project:</strong>  #{progect_name}<br/>
-              <strong>Event:</strong>  #{event}<br/>
-              <strong>Project url:</strong>  #{project_url}"
+    return "<strong>Project:</strong>  #{project_name}<br/>
+           <strong>Event:</strong>  #{event}<br/>
+           <strong>Project url:</strong>  #{project_url}"
+  rescue NoMethodError => error
+    return "<strong>Error parsing GitLab issue:</strong>  #{error}"
   end
 end
