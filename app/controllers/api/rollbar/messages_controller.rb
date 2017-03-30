@@ -28,8 +28,10 @@ class Api::Rollbar::MessagesController < ApplicationController
     data = @payload['data']['item']['title']
     uuid = @payload['data']['occurrence']['uuid']
     event_url = "https://rollbar.com/instance/uuid?uuid=#{uuid}"
-    message = "<strong>Event:</strong>  #{event}<br/>
-              <strong>Body:</strong>  #{data}<br/>
-              <strong>Rollbar report:</strong>  #{event_url}"
+    return "<strong>Event:</strong>  #{event}<br/>
+           <strong>Body:</strong>  #{data}<br/>
+           <strong>Rollbar report:</strong>  #{event_url}"
+  rescue NoMethodError => error
+    return "<strong>Error parsing Rollbar issue:</strong>  #{error}"
   end
 end
