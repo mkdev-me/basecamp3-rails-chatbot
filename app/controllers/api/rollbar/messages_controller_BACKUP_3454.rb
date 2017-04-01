@@ -31,7 +31,12 @@ class Api::Rollbar::MessagesController < ApplicationController
     return "<strong>Event:</strong>  #{event}<br/>
            <strong>Body:</strong>  #{data}<br/>
            <strong>Rollbar report:</strong>  #{event_url}"
+<<<<<<< HEAD
+  rescue NoMethodError => error
+    return "<strong>Error parsing Rollbar issue:</strong>  #{error}"
+=======
   rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
     return "<strong>Rollbar parsing error:</strong>  #{error}"
+>>>>>>> bugsnag
   end
 end
