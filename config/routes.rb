@@ -10,11 +10,15 @@ Rails.application.routes.draw do
       resources :messages, only: :create
     end
 
+    namespace :giphy do
+      resources :messages, only: :create
+    end
+
     namespace :rollbar do
       resources :messages, only: :create
     end
 
-    namespace :v1 do
+    namespace :sns do
       resources :messages, only: :create
     end
   end

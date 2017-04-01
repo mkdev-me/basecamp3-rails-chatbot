@@ -3,17 +3,17 @@ class Api::Gitlab::MessagesController < ApplicationController
 
   def create
     # Get the parsed JSON string
-    @payload = helpers.parse_webhook
+    gitlab_parsed = helpers.parse_webhook
 
     # error: JSON:ParserError
     # Get the failed JSON request message
-    request_error = @payload[:error]
+    request_error = gitlab_parsed[:error]
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed request:</strong> #{request_error}"
+                "<strong>Failed or 'non JSON' request:</strong> #{request_error}"
               else
-                build_message
+                build_message_text gitlab_parsed
               end
 
     # send message to basecamp
@@ -22,15 +22,15 @@ class Api::Gitlab::MessagesController < ApplicationController
 
   private
 
-  def build_message
-    # Store parsed dada from Rollbar
-    project_name = @payload['project']['name']
-    event = @payload['object_kind']
-    project_url = @payload['project']['web_url']
-    return "<strong>Project:</strong>  #{project_name}<br/>
+  def build_message_text(gitlab_parsed)
+    # Store parsed dada from GitLab
+    project_name = gitlab_parsed['project']['name']
+    event = gitlab_parsed['object_kind']
+    project_url = gitlab_parsed['project']['web_url']
+    return "<strong>Gitlab project:</strong>  #{project_name}<br/>
            <strong>Event:</strong>  #{event}<br/>
            <strong>Project url:</strong>  #{project_url}"
-  rescue NoMethodError => error
-    return "<strong>Error parsing GitLab issue:</strong>  #{error}"
+  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
+    return "<strong>GitLab parsing error:</strong>  #{error}"
   end
 end

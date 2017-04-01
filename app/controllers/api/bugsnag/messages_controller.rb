@@ -3,17 +3,17 @@ class Api::Bugsnag::MessagesController < ApplicationController
 
   def create
     # Get the parsed JSON string
-    @payload = helpers.parse_webhook
+    bugsnag_parsed = helpers.parse_webhook
 
     # error: JSON:ParserError
     # Get the failed JSON request message
-    request_error = @payload[:error]
+    request_error = bugsnag_parsed[:error]
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed</strong> request: #{request_error}"
+                "<strong>Failed or 'non JSON' request:</strong> #{request_error}"
               else
-                build_message
+                build_message_text bugsnag_parsed
               end
 
     # send message to basecamp
@@ -22,13 +22,15 @@ class Api::Bugsnag::MessagesController < ApplicationController
 
   private
 
-  def build_message
-    # Store parsed dada from Rollbar
-    event = @payload['error']['exceptionClass']
-    error_message = @payload['error']['message']
-    event_url = @payload['error']['url']
-    message = "<strong>Event:</strong>  #{event}<br/>
-              <strong>Body:</strong>  #{error_message}<br/>
-              <strong>Rollbar report:</strong>  #{event_url}"
+  def build_message_text(bugsnag_parsed)
+    # Store parsed dada from Bugsnag
+    event = bugsnag_parsed['error']['exceptionClass']
+    error_message = bugsnag_parsed['error']['message']
+    event_url = bugsnag_parsed['error']['url']
+    return "<strong>Event:</strong>  #{event}<br/>
+           <strong>Message:</strong>  #{error_message}<br/>
+           <strong>Bugsnag report:</strong>  #{event_url}"
+  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
+    return "<strong>Bugsnag parsing error:</strong>  #{error}"
   end
 end
