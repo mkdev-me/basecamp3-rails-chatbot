@@ -12,7 +12,7 @@ class Api::Sns::MessagesController < ApplicationController
       token: amazon_sns_request['Token'],
       })
     elsif amazon_sns_request['Type'].to_s.downcase == "notification"
-      message = build_message_text(amazon_sns_request)
+      message = build_message_text amazon_sns_request
     end
 
     # send message to basecamp
