@@ -11,7 +11,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed or 'non JSON' request:</strong> #{request_error}"
+                "Failed or 'non JSON' request: #{request_error}"
               else
                 build_message_text rollbar_parsed
               end
@@ -31,7 +31,7 @@ class Api::Rollbar::MessagesController < ApplicationController
     return "<strong>Event:</strong>  #{event}<br/>
            <strong>Body:</strong>  #{data}<br/>
            <strong>Rollbar report:</strong>  #{event_url}"
-  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
-    return "<strong>Rollbar parsing error:</strong>  #{error}"
+  rescue NoMethodError => e # del. exception handlidg to see errors in console
+    return "<strong>Rollbar parsing error:</strong>  #{e}"
   end
 end

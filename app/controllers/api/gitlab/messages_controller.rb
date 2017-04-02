@@ -11,7 +11,7 @@ class Api::Gitlab::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed or 'non JSON' request:</strong> #{request_error}"
+                "Failed or 'non JSON' request:#{request_error}"
               else
                 build_message_text gitlab_parsed
               end
@@ -30,7 +30,7 @@ class Api::Gitlab::MessagesController < ApplicationController
     return "<strong>Gitlab project:</strong>  #{project_name}<br/>
            <strong>Event:</strong>  #{event}<br/>
            <strong>Project url:</strong>  #{project_url}"
-  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
-    return "<strong>GitLab parsing error:</strong>  #{error}"
+  rescue NoMethodError => e # del. exception handlidg to see errors in console
+    return "<strong>GitLab parsing error:</strong>  #{e}"
   end
 end
