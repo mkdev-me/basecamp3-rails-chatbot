@@ -6,12 +6,9 @@ class Api::Sns::MessagesController < ApplicationController
     snstopic_arn = Rails.configuration.service['snstopic_arn']
     client = helpers.aws_config
     
-    if amazon_sns_request['Type'].to_s.downcase == "subscriptionconfirmation"
-      resp = client.confirm_subscription({
-      topic_arn: snstopic_arn,
-      token: amazon_sns_request['Token'],
-      })
-    elsif amazon_sns_request['Type'].to_s.downcase == "notification"
+    if amazon_sns_request['Type'].to_s.casecmp('SubscriptionConfirmation') >= 0
+      client.confirm_subscription( topic_arn: snstopic_arn, token: amazon_sns_request['Token'])
+    elsif amazon_sns_request['Type'].to_s.casecmp('Notification') >= 0
       message = build_message_text amazon_sns_request
     end
 
@@ -27,7 +24,7 @@ class Api::Sns::MessagesController < ApplicationController
     body = amazon_sns_request['Message']
     return "<strong>Subject:</strong>  #{subject}<br/>
            <strong>Body:</strong>  #{body}<br/>"
-  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
-    return "<strong>Amazon SNS parsing error:</strong>  #{error}"
+  rescue NoMethodError => e # del. exception handlidg to see errors in console
+    return "<strong>Amazon SNS parsing error:</strong>  #{e}"
   end
 end
