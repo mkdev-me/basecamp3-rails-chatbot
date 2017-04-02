@@ -7,10 +7,10 @@ class Api::Sns::MessagesController < ApplicationController
     client = helpers.aws_config
 
     if amazon_sns_request['Type'].to_s.casecmp('SubscriptionConfirmation') >= 0
-      client.confirm_subscription( 
-                                    topic_arn: snstopic_arn, 
-                                    token: amazon_sns_request['Token']
-                                  )
+      client.confirm_subscription(
+       topic_arn: snstopic_arn,
+       token: amazon_sns_request['Token']
+      )
     elsif amazon_sns_request['Type'].to_s.casecmp('Notification') >= 0
       message = build_message_text amazon_sns_request
     end

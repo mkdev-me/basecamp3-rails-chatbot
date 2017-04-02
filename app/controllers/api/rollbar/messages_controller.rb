@@ -11,7 +11,7 @@ class Api::Rollbar::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "Failed or 'non JSON' request: #{request_error}"
+                "Failed or non-JSON request: #{request_error}"
               else
                 build_message_text rollbar_parsed
               end

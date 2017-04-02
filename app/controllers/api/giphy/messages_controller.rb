@@ -9,8 +9,8 @@ class Api::Giphy::MessagesController < ApplicationController
     if giphy_response_status == 'OK'
       message = giphy_parsed['data']['fixed_width_downsampled_url']
     else
-      message = "There's a problem with Gliphy API: 
-                response status = #{giphy_response_status}"
+      message = "There's a problem with Gliphy API:
+                 response status = #{giphy_response_status}"
     end
 
     # send message to basecamp

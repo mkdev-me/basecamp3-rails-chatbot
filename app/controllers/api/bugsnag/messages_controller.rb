@@ -11,7 +11,7 @@ class Api::Bugsnag::MessagesController < ApplicationController
 
     # Prepare message for the campfire
     message = if request_error
-                "<strong>Failed or 'non JSON' request:</strong> #{request_error}"
+                "<strong>Failed or non-JSON request:</strong> #{request_error}"
               else
                 build_message_text bugsnag_parsed
               end
@@ -30,7 +30,7 @@ class Api::Bugsnag::MessagesController < ApplicationController
     return "<strong>Event:</strong>  #{event}<br/>
            <strong>Message:</strong>  #{error_message}<br/>
            <strong>Bugsnag report:</strong>  #{event_url}"
-  rescue NoMethodError => error # remove exception handlidg to see errors in the Dev. console
-    return "<strong>Bugsnag parsing error:</strong>  #{error}"
+  rescue NoMethodError => e # del. exception handlidg to see errors in console
+    return "<strong>Rollbar parsing error:</strong>  #{e}"
   end
 end
