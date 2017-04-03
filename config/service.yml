@@ -5,7 +5,7 @@ default: &default
   # Path to the .json file that contains 'aws_access_key' and 'aws_secret_key'
   aws_secret_file: /home/user/secrets.json
   # Giphy API url + public API key
-  giphy_url: http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC
+  giphy_api_key: "dc6zaTOxFJmzC"
 
 development:
   <<: *default
@@ -15,4 +15,4 @@ test:
 
 production:
   basecampbot_url: <%= ENV["BASECAMPBOT_URL"] %>
-  giphy_url: <%= ENV["GIPHY_URL"] %>
+  giphy_api_key: <%= ENV["GIPHY_API_KEY"] %>
