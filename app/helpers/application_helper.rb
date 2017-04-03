@@ -20,9 +20,8 @@ module ApplicationHelper
     return { error: error.to_s }
   end
 
-  def send_message(message)
-    # Send message to Basecamp Campfire via ChatBot
-    basecampbot_url = Rails.configuration.service['basecampbot_url']
+  def send_message(basecampbot_url, message)
+    basecampbot_url ||= Rails.configuration.service['basecampbot_url']
     HTTParty.post basecampbot_url, query: { content: message }
   end
 end

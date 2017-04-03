@@ -3,6 +3,6 @@ class Api::Giphy::MessagesController < ApplicationController
 
   def create
     image = Giphy.random(command_params[:command]).image_original_url.to_s
-    helpers.send_message("<img src='#{image}' />")
+    helpers.send_message(command_params[:callback_url], "<img src='#{image}' />")
   end
 end

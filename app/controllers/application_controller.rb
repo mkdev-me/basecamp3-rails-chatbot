@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   private
 
   def command_params
-    params.permit(:command)
+    params.permit(:command, :callback_url)
   end
 end
