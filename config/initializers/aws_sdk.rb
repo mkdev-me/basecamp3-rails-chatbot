@@ -1,4 +1,4 @@
-# aws_secret_file - path to *.yml which contains with AWS_ACCESS_KEY_ID and AWS_SECRET_KEY_ID
+# aws_secret_file: path to *.yml with AWS_ACCESS_KEY_ID and AWS_SECRET_KEY_ID
 aws_secret_file = Rails.configuration.service['aws_secret_file']
 creds = YAML.load(File.read(aws_secret_file))
 aws_creds = Aws::Credentials.new(
