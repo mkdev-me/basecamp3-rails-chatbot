@@ -17,7 +17,7 @@ class Api::Rollbar::MessagesController < ApplicationController
               end
 
     # send message to basecamp
-    helpers.send_message(message)
+    helpers.send_message(command_params[:callback_url], message)
   end
 
   private

@@ -17,7 +17,7 @@ class Api::Bugsnag::MessagesController < ApplicationController
               end
 
     # send message to basecamp
-    helpers.send_message(message)
+    helpers.send_message(command_params[:callback_url], message)
   end
 
   private
@@ -31,6 +31,6 @@ class Api::Bugsnag::MessagesController < ApplicationController
            <strong>Message:</strong>  #{error_message}<br/>
            <strong>Bugsnag report:</strong>  #{event_url}"
   rescue NoMethodError => e # del. exception handlidg to see errors in console
-    return "<strong>Rollbar parsing error:</strong>  #{e}"
+    return "<strong>Bugsnag parsing error:</strong>  #{e}"
   end
 end
