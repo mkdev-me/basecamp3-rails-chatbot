@@ -4,10 +4,7 @@ aws_region = Rails.configuration.service['aws_secret_file']
 
 if aws_secret_file.nil?
   credentials = Aws::InstanceProfileCredentials.new
-  Aws.config.update(
-   region: aws_region,
-   credentials: credentials
-  )
+  Aws.config.update(region: aws_region, credentials: credentials)
 else
   creds = YAML.load(File.read(aws_secret_file))
   aws_creds = Aws::Credentials.new(
