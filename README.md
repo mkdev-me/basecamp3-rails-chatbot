@@ -44,6 +44,10 @@ you need a bot long link. Like this:
     `arn:aws:sns:us-east-6:23730808936387:topick_name`
 2. Add your SNS __Topic ARN__ to  `/config/service.yml`
 3. [Aws-sdk gem](https://github.com/aws/aws-sdk-ruby), which used in this App, needs 'aws_access_key' and 'aws_secret_key' to work. To find them navigate to "My Security Credentials" category in your asw.amazon account. Always load your credentials from outside your application! Look at `/config/service.yml` for example. Avoid configuring credentials statically and never commit them to source control!
+    1) If you're running on AWS EC2 you able to assign AWS keys dynamically with IAM roles.
+    2. Create an IAM role.
+    3. Define which AWS services can assume the role (AmazonSNSFullAccess etc.)
+    4. Specify the role when you launch your instance, or attach the role to a running or stopped instance. 
 4. Start  rails server by typing `rails s` command.
 5. [Create subscription](http://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html). Use HTTP **Protocol** and  `http://your-external-host/api/sns/messages` as __Endpoint__
 6. At first time SNS send confirmation request which will be automatically accepted. After subscription you can [publish messages to the topic](http://docs.aws.amazon.com/sns/latest/dg/PublishTopic.html)
