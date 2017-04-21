@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def aws_config
-    Aws::SNS::Client.new
-  end
-
   def parse_webhook
     # Parse JSON request from remote calback server
     JSON.parse request.body.read
