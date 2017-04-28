@@ -1,5 +1,4 @@
 class Api::Sns::MessagesController < ApplicationController
-
   def create
     amazon_sns_request = Chatbot.parse_webhook(request.body.read)
     snstopic_arn = Rails.configuration.service['snstopic_arn']
