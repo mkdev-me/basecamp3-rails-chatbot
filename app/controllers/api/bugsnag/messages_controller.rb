@@ -1,9 +1,8 @@
 class Api::Bugsnag::MessagesController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   def create
     # Get the parsed JSON string
-    bugsnag_parsed = helpers.parse_webhook
+    bugsnag_parsed = Chatbot.parse_webhook(request.body.read)
 
     # error: JSON:ParserError
     # Get the failed JSON request message
@@ -17,7 +16,7 @@ class Api::Bugsnag::MessagesController < ApplicationController
               end
 
     # send message to basecamp
-    helpers.send_message(command_params[:callback_url], message)
+    Chatbot.send_message(command_params[:callback_url], message)
   end
 
   private

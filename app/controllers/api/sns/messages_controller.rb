@@ -1,23 +1,22 @@
 class Api::Sns::MessagesController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   def create
-    amazon_sns_request = helpers.parse_webhook
+    amazon_sns_request = Chatbot.parse_webhook(request.body.read)
     snstopic_arn = Rails.configuration.service['snstopic_arn']
     aws_region = Rails.configuration.service['aws_region']
     client = Aws::SNS::Client.new(region: aws_region)
 
     if amazon_sns_request['Type'].to_s.casecmp('SubscriptionConfirmation') >= 0
       client.confirm_subscription(
-       topic_arn: snstopic_arn,
-       token: amazon_sns_request['Token']
+        topic_arn: snstopic_arn,
+        token: amazon_sns_request['Token']
       )
     elsif amazon_sns_request['Type'].to_s.casecmp('Notification') >= 0
       message = build_message_text amazon_sns_request
     end
 
     # send message to basecamp
-    helpers.send_message(command_params[:callback_url], message)
+    Chatbot.send_message(command_params[:callback_url], message)
   end
 
   private

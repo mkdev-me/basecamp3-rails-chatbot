@@ -1,9 +1,8 @@
 class Api::Gitlab::MessagesController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   def create
     # Get the parsed JSON string
-    gitlab_parsed = helpers.parse_webhook
+    gitlab_parsed = Chatbot.parse_webhook(request.body.read)
 
     # error: JSON:ParserError
     # Get the failed JSON request message
@@ -17,7 +16,7 @@ class Api::Gitlab::MessagesController < ApplicationController
               end
 
     # send message to basecamp
-    helpers.send_message(command_params[:callback_url], message)
+    Chatbot.send_message(command_params[:callback_url], message)
   end
 
   private
