@@ -1,5 +1,4 @@
 class Api::Rollbar::MessagesController < ApplicationController
-
   def create
     # Get the parsed JSON string
     rollbar_parsed = Chatbot.parse_webhook(request.body.read)
