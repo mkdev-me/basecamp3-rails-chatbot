@@ -4,7 +4,7 @@ default: &default
   basecampbot_url: https://3.basecamp.com/34334368/integrations/Kvre67sn895bakxFzJLqD99GDRe/buckets/3854557/chats/498331306/lines
   snstopic_arn: arn:aws:sns:us-west-2:2303078387557:bascamp_chatbot
   # Path to the .yml file that contains 'aws_access_key' and 'aws_secret_key'. Attention!!! Delete it, if you are using Amazon EC2 hosting
-  aws_secret_file: /home/klim/aws.yml
+  aws_secret_file: /home/user/aws.yml
   aws_region: 'us-west-6'
   # Giphy API url + public API key
   giphy_api_key: "dc6zaTOxFJmzC"
