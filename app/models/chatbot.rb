@@ -1,5 +1,4 @@
 class Chatbot
-
   def self.parse_webhook(resp)
     JSON.parse resp
   # Handle exceptions in case of failed request
