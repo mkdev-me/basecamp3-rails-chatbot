@@ -1,5 +1,4 @@
 class Api::Bugsnag::MessagesController < ApplicationController
-
   def create
     # Get the parsed JSON string
     bugsnag_parsed = Chatbot.parse_webhook(request.body.read)
