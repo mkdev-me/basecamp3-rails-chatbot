@@ -1,5 +1,4 @@
 class Api::Gitlab::MessagesController < ApplicationController
-
   def create
     # Get the parsed JSON string
     gitlab_parsed = Chatbot.parse_webhook(request.body.read)
