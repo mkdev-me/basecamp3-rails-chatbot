@@ -1,0 +1,96 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'config/**/*'
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/ReturnInVoidContext:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: true
+
+Rails:
+  Enabled: true
+
+Rails/Delegate:
+  Exclude:
+    - 'lib/**/*'
+
+Rails/FilePath:
+  Enabled: false
+  
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'spec/**/*'
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: true
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Bundler/OrderedGems:
+  Enabled: false
