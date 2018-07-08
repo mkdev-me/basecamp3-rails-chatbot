@@ -26,10 +26,10 @@ class Api::Rollbar::MessagesController < ApplicationController
     data = rollbar_parsed['data']['item']['title']
     uuid = rollbar_parsed['data']['occurrence']['uuid']
     event_url = "https://rollbar.com/instance/uuid?uuid=#{uuid}"
-    return "<strong>Event:</strong>  #{event}<br/>
-           <strong>Body:</strong>  #{data}<br/>
-           <strong>Rollbar report:</strong>  #{event_url}"
+    "<strong>Event:</strong>  #{event}<br/>
+    <strong>Body:</strong>  #{data}<br/>
+    <strong>Rollbar report:</strong>  #{event_url}"
   rescue NoMethodError => e # del. exception handlidg to see errors in console
-    return "<strong>Rollbar parsing error:</strong>  #{e}"
+    "<strong>Rollbar parsing error:</strong>  #{e}"
   end
 end

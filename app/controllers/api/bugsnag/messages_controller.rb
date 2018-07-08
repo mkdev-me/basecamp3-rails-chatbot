@@ -25,10 +25,10 @@ class Api::Bugsnag::MessagesController < ApplicationController
     event = bugsnag_parsed['error']['exceptionClass']
     error_message = bugsnag_parsed['error']['message']
     event_url = bugsnag_parsed['error']['url']
-    return "<strong>Event:</strong>  #{event}<br/>
-           <strong>Message:</strong>  #{error_message}<br/>
-           <strong>Bugsnag report:</strong>  #{event_url}"
+    "<strong>Event:</strong>  #{event}<br/>
+    <strong>Message:</strong>  #{error_message}<br/>
+    <strong>Bugsnag report:</strong>  #{event_url}"
   rescue NoMethodError => e # del. exception handlidg to see errors in console
-    return "<strong>Bugsnag parsing error:</strong>  #{e}"
+    "<strong>Bugsnag parsing error:</strong>  #{e}"
   end
 end

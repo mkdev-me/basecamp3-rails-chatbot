@@ -25,10 +25,10 @@ class Api::Gitlab::MessagesController < ApplicationController
     project_name = gitlab_parsed['project']['name']
     event = gitlab_parsed['object_kind']
     project_url = gitlab_parsed['project']['web_url']
-    return "<strong>Gitlab project:</strong>  #{project_name}<br/>
-           <strong>Event:</strong>  #{event}<br/>
-           <strong>Project url:</strong>  #{project_url}"
+    "<strong>Gitlab project:</strong>  #{project_name}<br/>
+    <strong>Event:</strong>  #{event}<br/>
+    <strong>Project url:</strong>  #{project_url}"
   rescue NoMethodError => e # del. exception handlidg to see errors in console
-    return "<strong>GitLab parsing error:</strong>  #{e}"
+    "<strong>GitLab parsing error:</strong>  #{e}"
   end
 end

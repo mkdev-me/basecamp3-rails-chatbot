@@ -2,7 +2,7 @@
 aws_secret_file = Rails.configuration.service['aws_secret_file']
 
 if aws_secret_file.present?
-  creds = YAML.load(File.read(aws_secret_file))
+  creds = YAML.safe_load(File.read(aws_secret_file))
   aws_creds = Aws::Credentials.new(
     creds['aws_access_key'],
     creds['aws_secret_key']

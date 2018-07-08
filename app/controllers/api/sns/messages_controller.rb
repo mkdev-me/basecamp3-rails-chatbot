@@ -24,9 +24,9 @@ class Api::Sns::MessagesController < ApplicationController
     # Store parsed dada from amazon SNS
     subject = amazon_sns_request['Subject']
     body = amazon_sns_request['Message']
-    return "<strong>Subject:</strong>  #{subject}<br/>
-           <strong>Body:</strong>  #{body}<br/>"
+    "<strong>Subject:</strong>  #{subject}<br/>
+    <strong>Body:</strong>  #{body}<br/>"
   rescue NoMethodError => e # del. exception handlidg to see errors in console
-    return "<strong>Amazon SNS parsing error:</strong>  #{e}"
+    "<strong>Amazon SNS parsing error:</strong>  #{e}"
   end
 end
