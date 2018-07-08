@@ -8,7 +8,9 @@
 /.bundle
 /.idea
 /config/database.yml
-/config/secrets.yml
+/config/service.yml
+/config/secret.yml
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -19,6 +21,11 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/README.html
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore RVM files.
+/.ruby-gemset
+/.ruby-version
